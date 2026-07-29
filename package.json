@@ -1,0 +1,29 @@
+{
+  "name": "html-to-markdown-extension",
+  "version": "1.0.0",
+  "description": "Convert web articles, selections, or full pages into clean Markdown instantly.",
+  "main": "src/background/background.js",
+  "scripts": {
+    "build:bundle": "esbuild src/lib/turndown-entry.js --bundle --outfile=lib/turndown-bundle.js --format=iife",
+    "build:icons": "node scripts/generate-icons.js",
+    "build": "npm run build:bundle && npm run build:icons",
+    "zip": "powershell -Command \"Compress-Archive -Path manifest.json, icons, lib, src, package.json, README.md, LICENSE -DestinationPath html-to-markdown-extension.zip -Force\""
+  },
+  "keywords": [
+    "chrome-extension",
+    "html-to-markdown",
+    "turndown",
+    "turndownjs",
+    "markdown",
+    "open-source",
+    "converter"
+  ],
+  "author": "Open Source Community",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.28.1",
+    "pngjs": "^7.0.0",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
+}

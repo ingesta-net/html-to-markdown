@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "HTML vers Markdown",
+  "version": "1.0.0",
+  "description": "Convertissez instantanément des articles web, des sélections ou des pages entières en Markdown propre.",
+  "author": "Open Source Community",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "HTML vers Markdown",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "src/background/background.js"
+  }
+}
