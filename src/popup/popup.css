@@ -113,10 +113,9 @@ body {
 }
 
 .icon-btn:hover {
-  background-color: #ffffff;
+  background-color: #f8fafc;
   color: var(--title-color);
-  border-color: var(--silver-accent);
-  box-shadow: var(--shadow-sm);
+  border-color: rgba(148, 163, 184, 0.4);
 }
 
 /* ==========================================================================
@@ -147,7 +146,11 @@ body {
   transition: all 0.2s ease;
 }
 
-.mode-picker-btn:hover,
+.mode-picker-btn:hover {
+  background-color: #f8fafc;
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
 .mode-picker-btn.active {
   background-color: #ffffff;
   border-color: var(--silver-accent);
@@ -586,8 +589,8 @@ body {
 }
 
 .secondary-btn:hover {
-  background: var(--bg-hover);
-  border-color: var(--silver-accent);
+  background: #f8fafc;
+  border-color: rgba(148, 163, 184, 0.4);
   color: var(--title-color);
 }
 
@@ -625,10 +628,10 @@ body {
 }
 
 .action-btn:hover {
-  background: #e2e8f0;
-  border-color: var(--silver-accent);
-  color: #0f172a;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  background: #f1f5f9;
+  border-color: rgba(148, 163, 184, 0.4);
+  color: var(--title-color);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ==========================================================================

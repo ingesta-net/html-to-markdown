@@ -105,7 +105,7 @@ function initEventListeners() {
   document.getElementById('btnCopy').addEventListener('click', copyMarkdown);
   document.getElementById('btnDownload').addEventListener('click', downloadMarkdown);
   document.getElementById('btnGithub').addEventListener('click', () => {
-    chrome.tabs.create({ url: 'https://github.com/your-username/html-to-markdown-extension' });
+    chrome.tabs.create({ url: 'https://github.com/ingesta-net/html-to-markdown' });
   });
 
   document.getElementById('btnSettingsToggle').addEventListener('click', () => {
