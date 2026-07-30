@@ -58,7 +58,7 @@ html-to-markdown-extension/
 
 1. **Clone or Download this repository** to your local machine:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/html-to-markdown-extension.git
+   git clone https://github.com/ingesta-net/html-to-markdown
    ```
 
 2. **Install dependencies and build the extension bundle**:
