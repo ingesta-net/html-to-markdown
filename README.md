@@ -72,7 +72,7 @@ html-to-markdown-extension/
    - Open Google Chrome and navigate to `chrome://extensions/`
    - Enable **Developer mode** toggle in the top-right corner.
    - Click the **Load unpacked** button in the top-left corner.
-   - Select the `html-to-markdown-extension` directory.
+   - Select the `html-to-markdown` directory.
 
 4. **Pin and Use**:
    - Click the extensions puzzle piece icon in Chrome's toolbar and pin **HTML to Markdown**.
