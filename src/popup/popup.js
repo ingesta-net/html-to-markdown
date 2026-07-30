@@ -1,4 +1,4 @@
-// Popup script for HTML to Markdown Converter
+// Popup script for HTML to Markdown Converter (i18n enabled)
 
 let currentTitle = 'page';
 let currentUrl = '';
@@ -6,20 +6,13 @@ let currentHtml = '';
 let currentMarkdown = '';
 let currentMode = 'article';
 
-const MODE_METADATA = {
-  article: {
-    label: 'Article',
-    iconSvg: '<path d="M4 6h16M4 12h16M4 18h7"/>'
-  },
-  selection: {
-    label: 'Sélection',
-    iconSvg: '<path d="M6 3v18M18 3v18M3 6h18M3 18h18"/>'
-  },
-  full: {
-    label: 'Page entière',
-    iconSvg: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/>'
+function getI18nMsg(key, fallback, placeholders = []) {
+  if (typeof chrome !== 'undefined' && chrome.i18n && typeof chrome.i18n.getMessage === 'function') {
+    const msg = chrome.i18n.getMessage(key, placeholders);
+    if (msg) return msg;
   }
-};
+  return fallback;
+}
 
 const DEFAULT_SETTINGS = {
   headingStyle: 'atx',
@@ -35,10 +28,34 @@ const DEFAULT_SETTINGS = {
 let userSettings = { ...DEFAULT_SETTINGS };
 
 document.addEventListener('DOMContentLoaded', async () => {
+  localizeUI();
   initEventListeners();
   await loadSettings();
   await checkActiveTabAndConvert();
 });
+
+function localizeUI() {
+  // Elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const msg = getI18nMsg(key, el.textContent);
+    if (msg) el.textContent = msg;
+  });
+
+  // Elements with data-i18n-title
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    const msg = getI18nMsg(key, el.getAttribute('title'));
+    if (msg) el.setAttribute('title', msg);
+  });
+
+  // Elements with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const msg = getI18nMsg(key, el.getAttribute('placeholder'));
+    if (msg) el.setAttribute('placeholder', msg);
+  });
+}
 
 function initEventListeners() {
   // Mode picker dropdown toggle in header
@@ -97,7 +114,7 @@ function initEventListeners() {
     applySettingsToUI();
     chrome.storage.sync.set(userSettings, () => {
       convertHtmlToMarkdown();
-      showToast('Paramètres réinitialisés');
+      showToast(getI18nMsg('toastReset', 'Settings reset'));
     });
   });
 
@@ -158,10 +175,15 @@ function switchMode(mode) {
     btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
   });
 
-  const meta = MODE_METADATA[mode];
-  if (meta) {
+  const modeKeys = {
+    article: 'modeArticle',
+    selection: 'modeSelection',
+    full: 'modeFull'
+  };
+  const key = modeKeys[mode];
+  if (key) {
     const textEl = document.getElementById('activeModeText');
-    if (textEl) textEl.textContent = meta.label;
+    if (textEl) textEl.textContent = getI18nMsg(key, mode);
   }
 
   fetchAndConvert();
@@ -187,7 +209,6 @@ function switchTab(tabName) {
 }
 
 async function checkActiveTabAndConvert() {
-  // Check if context menu saved an active mode override
   chrome.storage.local.get(['activeModeOverride'], (res) => {
     if (res.activeModeOverride) {
       currentMode = res.activeModeOverride;
@@ -204,66 +225,62 @@ async function fetchAndConvert() {
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab || !tab.id) {
-      document.getElementById('markdownOutput').value = 'Impossible d\'accéder à l\'onglet actuel.';
+      document.getElementById('markdownOutput').value = getI18nMsg('errNoTab', 'Unable to access active tab.');
       return;
     }
 
-    // Don't run on chrome:// or extension pages
     if (tab.url && (tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://') || tab.url.startsWith('edge://'))) {
-      document.getElementById('markdownOutput').value = 'Impossible d\'exécuter l\'extension sur les pages système du navigateur.';
-      document.getElementById('pageTitle').textContent = tab.title || 'Page système';
+      document.getElementById('markdownOutput').value = getI18nMsg('errSystemPage', 'Cannot run extension on browser system pages.');
+      document.getElementById('pageTitle').textContent = tab.title || getI18nMsg('systemPageTitle', 'System Page');
       return;
     }
 
-    // Inject content script dynamically if needed
     try {
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
         files: ['src/content/content.js']
       });
     } catch (e) {
-      // Content script may already be injected or restricted
+      // Script may already be injected
     }
 
-    // Send message to extract HTML
     chrome.tabs.sendMessage(tab.id, { action: 'getPageContent', mode: currentMode }, (response) => {
       if (chrome.runtime.lastError || !response || !response.success) {
-        document.getElementById('markdownOutput').value = 'Échec de l\'extraction du contenu de l\'onglet.';
+        document.getElementById('markdownOutput').value = getI18nMsg('errExtract', 'Failed to extract content from tab.');
         return;
       }
 
       const { title, url, html, hasSelection } = response.data;
-      currentTitle = title || 'page web';
+      currentTitle = title || getI18nMsg('webPageFallback', 'web page');
       currentUrl = url || '';
       currentHtml = html || '';
 
       document.getElementById('pageTitle').textContent = currentTitle;
 
-      // Selection badge state
       const selBadge = document.getElementById('selectionBadge');
       if (hasSelection) {
-        selBadge.textContent = 'Actif';
+        selBadge.textContent = getI18nMsg('badgeActive', 'Active');
         selBadge.classList.add('active');
       } else {
-        selBadge.textContent = 'Inactif';
+        selBadge.textContent = getI18nMsg('badgeInactive', 'Inactive');
         selBadge.classList.remove('active');
       }
 
       convertHtmlToMarkdown();
     });
   } catch (err) {
-    document.getElementById('markdownOutput').value = 'Erreur: ' + err.message;
+    document.getElementById('markdownOutput').value = 'Error: ' + err.message;
   }
 }
 
 function convertHtmlToMarkdown() {
   if (!currentHtml) {
-    document.getElementById('markdownOutput').value = 'Aucun contenu HTML trouvé à convertir.';
+    document.getElementById('markdownOutput').value = getI18nMsg('errNoHtml', 'No HTML content found to convert.');
     return;
   }
 
   if (typeof window.TurndownService === 'undefined') {
-    document.getElementById('markdownOutput').value = 'La bibliothèque Turndown n\'a pas pu être chargée.';
+    document.getElementById('markdownOutput').value = getI18nMsg('errTurndown', 'Turndown library could not be loaded.');
     return;
   }
 
@@ -278,7 +295,6 @@ function convertHtmlToMarkdown() {
       linkStyle: 'inlined'
     });
 
-    // Apply GFM Plugin if enabled
     if (userSettings.gfm && window.turndownPluginGfm) {
       const gfmPlugin = typeof window.turndownPluginGfm === 'function'
         ? window.turndownPluginGfm
@@ -289,7 +305,6 @@ function convertHtmlToMarkdown() {
       }
     }
 
-    // Handle Image filtering if disabled
     if (!userSettings.keepImages) {
       turndownService.addRule('removeImages', {
         filter: ['img'],
@@ -297,17 +312,15 @@ function convertHtmlToMarkdown() {
       });
     }
 
-    // Convert
     let markdown = turndownService.turndown(currentHtml);
 
-    // Prepend metadata header
     const header = `# ${currentTitle}\n\n> Source: [${currentUrl}](${currentUrl})\n\n---\n\n`;
     currentMarkdown = header + markdown;
 
     document.getElementById('markdownOutput').value = currentMarkdown;
     updateMetaCount();
   } catch (err) {
-    document.getElementById('markdownOutput').value = 'Erreur de conversion: ' + err.message;
+    document.getElementById('markdownOutput').value = 'Conversion error: ' + err.message;
   }
 }
 
@@ -322,40 +335,34 @@ function updateMetaCount() {
   const wordCount = currentMarkdown.trim() ? currentMarkdown.trim().split(/\s+/).length : 0;
   const metaEl = document.getElementById('charCount');
   if (metaEl) {
-    metaEl.textContent = `${formatCompactNum(len)} car. · ${formatCompactNum(wordCount)} mots`;
-    metaEl.title = `${len.toLocaleString()} caractères, ${wordCount.toLocaleString()} mots`;
+    const formattedLen = formatCompactNum(len);
+    const formattedWord = formatCompactNum(wordCount);
+    metaEl.textContent = getI18nMsg('charCountFormat', `${formattedLen} chars · ${formattedWord} words`, [formattedLen, formattedWord]);
+    metaEl.title = getI18nMsg('charCountTitle', `${len.toLocaleString()} characters, ${wordCount.toLocaleString()} words`, [len.toLocaleString(), wordCount.toLocaleString()]);
   }
 }
 
 function updatePreview(mdText) {
   const previewEl = document.getElementById('markdownPreview');
   if (!mdText || !mdText.trim()) {
-    previewEl.innerHTML = '<p class="placeholder-text">Aucun contenu à prévisualiser.</p>';
+    previewEl.innerHTML = `<p class="placeholder-text">${getI18nMsg('placeholderNoContent', 'No content to preview.')}</p>`;
     return;
   }
 
-  // Simple, safe Markdown to HTML preview generator
   let html = mdText
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-  // Code blocks ```
   html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-  // Inline code `code`
   html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-  // Headers (# H1, ## H2, ### H3)
   html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
   html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
   html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-  // Bold & Italic
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Blockquotes
   html = html.replace(/^&gt; (.*$)/gim, '<blockquote>$1</blockquote>');
-  // Links
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  // Paragraphs
   html = html.replace(/\n\n/g, '</p><p>');
   html = '<p>' + html + '</p>';
 
@@ -364,14 +371,14 @@ function updatePreview(mdText) {
 
 function copyMarkdown() {
   if (!currentMarkdown) return;
+  const copiedToast = getI18nMsg('toastCopied', 'Copied to clipboard!');
   navigator.clipboard.writeText(currentMarkdown).then(() => {
-    showToast('Copié dans le presse-papiers !');
+    showToast(copiedToast);
   }).catch(() => {
-    // Fallback copy using textarea select
     const area = document.getElementById('markdownOutput');
     area.select();
     document.execCommand('copy');
-    showToast('Copié dans le presse-papiers !');
+    showToast(copiedToast);
   });
 }
 
@@ -396,7 +403,7 @@ function downloadMarkdown() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
-  showToast(`${filename} téléchargé`);
+  showToast(getI18nMsg('toastDownloaded', `${filename} downloaded`, [filename]));
 }
 
 function showToast(message) {

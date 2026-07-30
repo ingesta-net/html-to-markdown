@@ -7,7 +7,7 @@
     "build:bundle": "esbuild src/lib/turndown-entry.js --bundle --outfile=lib/turndown-bundle.js --format=iife",
     "build:icons": "node scripts/generate-icons.js",
     "build": "npm run build:bundle && npm run build:icons",
-    "zip": "powershell -Command \"Compress-Archive -Path manifest.json, icons, lib, src, package.json, README.md, LICENSE -DestinationPath html-to-markdown-extension.zip -Force\""
+    "zip": "powershell -Command \"Compress-Archive -Path manifest.json, _locales, icons, lib, src, package.json, README.md, LICENSE -DestinationPath html-to-markdown-extension.zip -Force\""
   },
   "keywords": [
     "chrome-extension",

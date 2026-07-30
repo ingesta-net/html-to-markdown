@@ -1,0 +1,176 @@
+{
+  "appName": {
+    "message": "HTML vers Markdown",
+    "description": "Le nom de l'extension."
+  },
+  "appDesc": {
+    "message": "Convertissez instantanément des articles web, des sélections ou des pages entières en Markdown propre.",
+    "description": "La description de l'extension."
+  },
+  "contextMenuTitle": {
+    "message": "Convertir la sélection en Markdown",
+    "description": "Titre du menu contextuel au clic droit sur du texte sélectionné."
+  },
+  "modePickerTitle": {
+    "message": "Sélectionner le mode d'extraction"
+  },
+  "modePrefix": {
+    "message": "Mode :"
+  },
+  "modeDropdownHeader": {
+    "message": "Mode d'extraction"
+  },
+  "modeArticle": {
+    "message": "Article"
+  },
+  "modeSelection": {
+    "message": "Sélection"
+  },
+  "modeFull": {
+    "message": "Page entière"
+  },
+  "badgeActive": {
+    "message": "Actif"
+  },
+  "badgeInactive": {
+    "message": "Inactif"
+  },
+  "btnGithubTitle": {
+    "message": "Voir le code source sur GitHub"
+  },
+  "btnSettingsTitle": {
+    "message": "Paramètres"
+  },
+  "tabMarkdown": {
+    "message": "Markdown"
+  },
+  "tabPreview": {
+    "message": "Aperçu"
+  },
+  "tabOptions": {
+    "message": "Options"
+  },
+  "detectingPage": {
+    "message": "Détection de la page..."
+  },
+  "placeholderConverting": {
+    "message": "Conversion en cours..."
+  },
+  "placeholderPreview": {
+    "message": "Cliquez sur les onglets de conversion pour prévisualiser le résultat..."
+  },
+  "placeholderNoContent": {
+    "message": "Aucun contenu à prévisualiser."
+  },
+  "headingStyleLabel": {
+    "message": "Style de titre"
+  },
+  "headingStyleAtx": {
+    "message": "ATX (# Titre)"
+  },
+  "headingStyleSetext": {
+    "message": "Setext (Titre souligné)"
+  },
+  "codeBlockStyleLabel": {
+    "message": "Style de bloc de code"
+  },
+  "codeBlockStyleFenced": {
+    "message": "Délimité (```)"
+  },
+  "codeBlockStyleIndented": {
+    "message": "Indenté (4 espaces)"
+  },
+  "bulletListMarkerLabel": {
+    "message": "Puce de liste"
+  },
+  "bulletListMarkerDash": {
+    "message": "- (Tiret)"
+  },
+  "bulletListMarkerStar": {
+    "message": "* (Astérisque)"
+  },
+  "bulletListMarkerPlus": {
+    "message": "+ (Plus)"
+  },
+  "hrLabel": {
+    "message": "Règle horizontale"
+  },
+  "gfmLabel": {
+    "message": "GitHub Flavored Markdown (GFM)"
+  },
+  "gfmDesc": {
+    "message": "Prend en charge les tableaux, le texte barré, les listes de tâches"
+  },
+  "keepImagesLabel": {
+    "message": "Inclure les images"
+  },
+  "btnResetSettings": {
+    "message": "Réinitialiser les paramètres"
+  },
+  "btnCopy": {
+    "message": "Copier le Markdown"
+  },
+  "btnDownload": {
+    "message": "Télécharger .md"
+  },
+  "toastCopied": {
+    "message": "Copié dans le presse-papiers !"
+  },
+  "toastReset": {
+    "message": "Paramètres réinitialisés"
+  },
+  "toastDownloaded": {
+    "message": "$FILENAME$ téléchargé",
+    "placeholders": {
+      "filename": {
+        "content": "$1"
+      }
+    }
+  },
+  "charCountFormat": {
+    "message": "$CHAR$ car. · $WORD$ mots",
+    "placeholders": {
+      "char": {
+        "content": "$1"
+      },
+      "word": {
+        "content": "$2"
+      }
+    }
+  },
+  "charCountTitle": {
+    "message": "$CHAR$ caractères, $WORD$ mots",
+    "placeholders": {
+      "char": {
+        "content": "$1"
+      },
+      "word": {
+        "content": "$2"
+      }
+    }
+  },
+  "errNoTab": {
+    "message": "Impossible d'accéder à l'onglet actuel."
+  },
+  "errSystemPage": {
+    "message": "Impossible d'exécuter l'extension sur les pages système du navigateur."
+  },
+  "systemPageTitle": {
+    "message": "Page système"
+  },
+  "errExtract": {
+    "message": "Échec de l'extraction du contenu de l'onglet."
+  },
+  "errNoHtml": {
+    "message": "Aucun contenu HTML trouvé à convertir."
+  },
+  "errTurndown": {
+    "message": "La bibliothèque Turndown n'a pas pu être chargée."
+  },
+  "untitledPage": {
+    "message": "Page sans titre"
+  },
+  "webPageFallback": {
+    "message": "page web"
+  }
+}

@@ -17,7 +17,7 @@
   });
 
   function extractPageContent(mode) {
-    const pageTitle = document.title || 'Page sans titre';
+    const pageTitle = document.title || (typeof chrome !== 'undefined' && chrome.i18n?.getMessage ? chrome.i18n.getMessage('untitledPage') : 'Untitled Page');
     const pageUrl = window.location.href;
 
     const selectionHtml = getSelectionHtml();

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML vers Markdown</title>
+  <title data-i18n="appName">HTML to Markdown</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,49 +15,49 @@
     <header class="app-header">
       <div class="brand">
         <div class="brand-text">
-          <h1 class="page-title" id="pageTitle">Détection de la page...</h1>
+          <h1 class="page-title" id="pageTitle" data-i18n="detectingPage">Detecting page...</h1>
         </div>
       </div>
       <div class="header-actions">
         <div class="dropdown-wrapper">
-          <button id="btnModePicker" class="mode-picker-btn" title="Sélectionner le mode d'extraction">
-            <span class="mode-prefix">Mode :</span>
-            <span id="activeModeText" class="mode-text">Article</span>
+          <button id="btnModePicker" class="mode-picker-btn" data-i18n-title="modePickerTitle" title="Select extraction mode">
+            <span class="mode-prefix" data-i18n="modePrefix">Mode:</span>
+            <span id="activeModeText" class="mode-text" data-i18n="modeArticle">Article</span>
             <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div id="modeDropdownMenu" class="dropdown-menu">
-            <div class="dropdown-header">Mode d'extraction</div>
+            <div class="dropdown-header" data-i18n="modeDropdownHeader">Extraction Mode</div>
             <button class="dropdown-item mode-btn active" data-mode="article">
               <div class="dropdown-item-left">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
-                <span>Article</span>
+                <span data-i18n="modeArticle">Article</span>
               </div>
               <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
             </button>
             <button class="dropdown-item mode-btn" data-mode="selection" id="btnModeSelection">
               <div class="dropdown-item-left">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v18M18 3v18M3 6h18M3 18h18"/></svg>
-                <span>Sélection</span>
-                <span class="badge" id="selectionBadge">Inactif</span>
+                <span data-i18n="modeSelection">Selection</span>
+                <span class="badge" id="selectionBadge" data-i18n="badgeInactive">Inactive</span>
               </div>
               <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
             </button>
             <button class="dropdown-item mode-btn" data-mode="full">
               <div class="dropdown-item-left">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
-                <span>Page entière</span>
+                <span data-i18n="modeFull">Full Page</span>
               </div>
               <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
             </button>
           </div>
         </div>
 
-        <button id="btnGithub" class="icon-btn" title="Voir le code source sur GitHub">
+        <button id="btnGithub" class="icon-btn" data-i18n-title="btnGithubTitle" title="View source code on GitHub">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
         </button>
-        <button id="btnSettingsToggle" class="icon-btn" title="Paramètres">
+        <button id="btnSettingsToggle" class="icon-btn" data-i18n-title="btnSettingsTitle" title="Settings">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="3"></circle>
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -69,9 +69,9 @@
     <!-- View Mode Selector -->
     <div class="view-tabs">
       <div class="tab-buttons">
-        <button class="tab-btn active" data-tab="editor">Markdown</button>
-        <button class="tab-btn" data-tab="preview">Aperçu</button>
-        <button class="tab-btn" data-tab="settings">Options</button>
+        <button class="tab-btn active" data-tab="editor" data-i18n="tabMarkdown">Markdown</button>
+        <button class="tab-btn" data-tab="preview" data-i18n="tabPreview">Preview</button>
+        <button class="tab-btn" data-tab="settings" data-i18n="tabOptions">Options</button>
       </div>
       <span class="meta-count" id="charCount">0 car.</span>
     </div>
@@ -80,13 +80,13 @@
     <main class="content-panel">
       <!-- Editor Panel -->
       <div class="tab-pane active" id="paneEditor">
-        <textarea id="markdownOutput" placeholder="Conversion en cours..." spellcheck="false"></textarea>
+        <textarea id="markdownOutput" data-i18n-placeholder="placeholderConverting" placeholder="Converting..." spellcheck="false"></textarea>
       </div>
 
       <!-- Preview Panel -->
       <div class="tab-pane" id="panePreview">
         <div id="markdownPreview" class="markdown-body">
-          <p class="placeholder-text">Cliquez sur les onglets de conversion pour prévisualiser le résultat...</p>
+          <p class="placeholder-text" data-i18n="placeholderPreview">Click on conversion tabs to preview result...</p>
         </div>
       </div>
 
@@ -94,32 +94,32 @@
       <div class="tab-pane" id="paneSettings">
         <div class="settings-form">
           <div class="setting-group">
-            <label for="headingStyle">Style de titre</label>
+            <label for="headingStyle" data-i18n="headingStyleLabel">Heading Style</label>
             <select id="headingStyle">
-              <option value="atx">ATX (# Titre)</option>
-              <option value="setext">Setext (Titre souligné)</option>
+              <option value="atx" data-i18n="headingStyleAtx">ATX (# Heading)</option>
+              <option value="setext" data-i18n="headingStyleSetext">Setext (Underlined)</option>
             </select>
           </div>
 
           <div class="setting-group">
-            <label for="codeBlockStyle">Style de bloc de code</label>
+            <label for="codeBlockStyle" data-i18n="codeBlockStyleLabel">Code Block Style</label>
             <select id="codeBlockStyle">
-              <option value="fenced">Délimité (```)</option>
-              <option value="indented">Indenté (4 espaces)</option>
+              <option value="fenced" data-i18n="codeBlockStyleFenced">Fenced (```)</option>
+              <option value="indented" data-i18n="codeBlockStyleIndented">Indented (4 spaces)</option>
             </select>
           </div>
 
           <div class="setting-group">
-            <label for="bulletListMarker">Puce de liste</label>
+            <label for="bulletListMarker" data-i18n="bulletListMarkerLabel">Bullet List Marker</label>
             <select id="bulletListMarker">
-              <option value="-">- (Tiret)</option>
-              <option value="*">* (Astérisque)</option>
-              <option value="+">+ (Plus)</option>
+              <option value="-" data-i18n="bulletListMarkerDash">- (Dash)</option>
+              <option value="*" data-i18n="bulletListMarkerStar">* (Asterisk)</option>
+              <option value="+" data-i18n="bulletListMarkerPlus">+ (Plus)</option>
             </select>
           </div>
 
           <div class="setting-group">
-            <label for="hr">Règle horizontale</label>
+            <label for="hr" data-i18n="hrLabel">Horizontal Rule</label>
             <select id="hr">
               <option value="---">---</option>
               <option value="***">***</option>
@@ -130,19 +130,19 @@
           <div class="setting-group checkbox-group">
             <label for="gfm">
               <input type="checkbox" id="gfm" checked>
-              <span>GitHub Flavored Markdown (GFM)</span>
+              <span data-i18n="gfmLabel">GitHub Flavored Markdown (GFM)</span>
             </label>
-            <small>Prend en charge les tableaux, le texte barré, les listes de tâches</small>
+            <small data-i18n="gfmDesc">Supports tables, strikethrough, task lists</small>
           </div>
 
           <div class="setting-group checkbox-group">
             <label for="keepImages">
               <input type="checkbox" id="keepImages" checked>
-              <span>Inclure les images</span>
+              <span data-i18n="keepImagesLabel">Include Images</span>
             </label>
           </div>
 
-          <button id="btnResetSettings" class="secondary-btn">Réinitialiser les paramètres</button>
+          <button id="btnResetSettings" class="secondary-btn" data-i18n="btnResetSettings">Reset Settings</button>
         </div>
       </div>
     </main>
@@ -154,7 +154,7 @@
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
         </svg>
-        Copier le Markdown
+        <span data-i18n="btnCopy">Copy Markdown</span>
       </button>
 
       <button id="btnDownload" class="action-btn secondary">
@@ -163,12 +163,12 @@
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        Télécharger .md
+        <span data-i18n="btnDownload">Download .md</span>
       </button>
     </footer>
 
     <!-- Notification Toast -->
-    <div id="toast" class="toast">Copié dans le presse-papiers !</div>
+    <div id="toast" class="toast" data-i18n="toastCopied">Copied to clipboard!</div>
   </div>
 
   <script src="/lib/turndown-bundle.js"></script>

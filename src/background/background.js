@@ -31,7 +31,7 @@ chrome.runtime.onInstalled.addListener(() => {
         if (chrome.contextMenus && typeof chrome.contextMenus.create === 'function') {
           chrome.contextMenus.create({
             id: 'convert-selection-to-md',
-            title: 'Convertir la sélection en Markdown',
+            title: chrome.i18n.getMessage('contextMenuTitle') || 'Convert Selection to Markdown',
             contexts: ['selection']
           }, () => {
             if (chrome.runtime.lastError) {

@@ -1,0 +1,176 @@
+{
+  "appName": {
+    "message": "HTML to Markdown",
+    "description": "The name of the extension."
+  },
+  "appDesc": {
+    "message": "Instantly convert web articles, selections, or full pages into clean Markdown.",
+    "description": "The description of the extension."
+  },
+  "contextMenuTitle": {
+    "message": "Convert Selection to Markdown",
+    "description": "Context menu title when right clicking highlighted text."
+  },
+  "modePickerTitle": {
+    "message": "Select extraction mode"
+  },
+  "modePrefix": {
+    "message": "Mode:"
+  },
+  "modeDropdownHeader": {
+    "message": "Extraction Mode"
+  },
+  "modeArticle": {
+    "message": "Article"
+  },
+  "modeSelection": {
+    "message": "Selection"
+  },
+  "modeFull": {
+    "message": "Full Page"
+  },
+  "badgeActive": {
+    "message": "Active"
+  },
+  "badgeInactive": {
+    "message": "Inactive"
+  },
+  "btnGithubTitle": {
+    "message": "View source code on GitHub"
+  },
+  "btnSettingsTitle": {
+    "message": "Settings"
+  },
+  "tabMarkdown": {
+    "message": "Markdown"
+  },
+  "tabPreview": {
+    "message": "Preview"
+  },
+  "tabOptions": {
+    "message": "Options"
+  },
+  "detectingPage": {
+    "message": "Detecting page..."
+  },
+  "placeholderConverting": {
+    "message": "Converting..."
+  },
+  "placeholderPreview": {
+    "message": "Click on conversion tabs to preview result..."
+  },
+  "placeholderNoContent": {
+    "message": "No content to preview."
+  },
+  "headingStyleLabel": {
+    "message": "Heading Style"
+  },
+  "headingStyleAtx": {
+    "message": "ATX (# Heading)"
+  },
+  "headingStyleSetext": {
+    "message": "Setext (Underlined)"
+  },
+  "codeBlockStyleLabel": {
+    "message": "Code Block Style"
+  },
+  "codeBlockStyleFenced": {
+    "message": "Fenced (```)"
+  },
+  "codeBlockStyleIndented": {
+    "message": "Indented (4 spaces)"
+  },
+  "bulletListMarkerLabel": {
+    "message": "Bullet List Marker"
+  },
+  "bulletListMarkerDash": {
+    "message": "- (Dash)"
+  },
+  "bulletListMarkerStar": {
+    "message": "* (Asterisk)"
+  },
+  "bulletListMarkerPlus": {
+    "message": "+ (Plus)"
+  },
+  "hrLabel": {
+    "message": "Horizontal Rule"
+  },
+  "gfmLabel": {
+    "message": "GitHub Flavored Markdown (GFM)"
+  },
+  "gfmDesc": {
+    "message": "Supports tables, strikethrough, task lists"
+  },
+  "keepImagesLabel": {
+    "message": "Include Images"
+  },
+  "btnResetSettings": {
+    "message": "Reset Settings"
+  },
+  "btnCopy": {
+    "message": "Copy Markdown"
+  },
+  "btnDownload": {
+    "message": "Download .md"
+  },
+  "toastCopied": {
+    "message": "Copied to clipboard!"
+  },
+  "toastReset": {
+    "message": "Settings reset"
+  },
+  "toastDownloaded": {
+    "message": "$FILENAME$ downloaded",
+    "placeholders": {
+      "filename": {
+        "content": "$1"
+      }
+    }
+  },
+  "charCountFormat": {
+    "message": "$CHAR$ chars · $WORD$ words",
+    "placeholders": {
+      "char": {
+        "content": "$1"
+      },
+      "word": {
+        "content": "$2"
+      }
+    }
+  },
+  "charCountTitle": {
+    "message": "$CHAR$ characters, $WORD$ words",
+    "placeholders": {
+      "char": {
+        "content": "$1"
+      },
+      "word": {
+        "content": "$2"
+      }
+    }
+  },
+  "errNoTab": {
+    "message": "Unable to access active tab."
+  },
+  "errSystemPage": {
+    "message": "Cannot run extension on browser system pages."
+  },
+  "systemPageTitle": {
+    "message": "System Page"
+  },
+  "errExtract": {
+    "message": "Failed to extract content from tab."
+  },
+  "errNoHtml": {
+    "message": "No HTML content found to convert."
+  },
+  "errTurndown": {
+    "message": "Turndown library could not be loaded."
+  },
+  "untitledPage": {
+    "message": "Untitled Page"
+  },
+  "webPageFallback": {
+    "message": "web page"
+  }
+}
