@@ -2,6 +2,9 @@
 
 Website: https://www.ingesta.net
 
+Link to Google's extension
+https://chromewebstore.google.com/detail/html-to-markdown/pdphgkhmiebihjdaciikbkiknepnfhpk
+
 Convert web articles, selections, or full pages into clean Markdown instantly with this Manifest V3 Chrome Extension powered by Turndown.js.
 
 ---
